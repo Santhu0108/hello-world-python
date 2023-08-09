@@ -1,0 +1,26 @@
+name: Python Hello World Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+
+      - name: Deploy Hello World
+        env:
+          CUSTOM_MESSAGE: "Hello World!"  
+        run: |
+          echo $CUSTOM_MESSAGE
+          python hello.py
